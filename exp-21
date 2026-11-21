@@ -1,0 +1,32 @@
+users = 3
+resources = 12
+
+channel = [
+    [8, 5, 3, 7, 6, 4, 9, 2, 5, 8, 3, 6],
+    [4, 9, 6, 3, 8, 7, 2, 9, 5, 4, 8, 6],
+    [7, 3, 9, 5, 4, 8, 6, 7, 9, 3, 5, 8]
+]
+
+throughput = [0] * users
+
+for r in range(resources):
+    best_user = 0
+
+    for u in range(1, users):
+        if channel[u][r] > channel[best_user][r]:
+            best_user = u
+
+    throughput[best_user] += channel[best_user][r]
+
+print("User Throughput:")
+
+for u in range(users):
+    print("User", u + 1, ":", throughput[u])
+
+total = sum(throughput)
+square_sum = sum(x*x for x in throughput)
+
+fairness = (total ** 2) / (users * square_sum)
+
+print("Total Throughput:", total)
+print("Jain's Fairness Index:", round(fairness, 3))
