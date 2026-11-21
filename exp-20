@@ -1,0 +1,27 @@
+data = [1, 0, 1, 1]
+
+code = [1, -1, 1, -1]
+
+spreading = []
+
+for bit in data:
+    signal = 1 if bit == 1 else -1
+
+    for c in code:
+        spreading.append(signal * c)
+
+print("Original Data:", data)
+print("Spreading Code:", code)
+print("Spread Signal:", spreading)
+
+despread = []
+
+for i in range(0, len(spreading), len(code)):
+    result = sum(spreading[i:i+len(code)]) / len(code)
+
+    if result > 0:
+        despread.append(1)
+    else:
+        despread.append(0)
+
+print("Despread Data:", despread)
