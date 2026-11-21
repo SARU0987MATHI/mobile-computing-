@@ -1,0 +1,21 @@
+import random
+
+threshold = -90
+hysteresis = 5
+
+serving = -85
+
+for i in range(10):
+    new_signal = random.randint(-100, -70)
+
+    print("\nTime:", i + 1)
+    print("Serving Signal:", serving)
+    print("New Cell Signal:", new_signal)
+
+    if new_signal > serving + hysteresis:
+        serving = new_signal
+        print("Handoff Occurred")
+    else:
+        print("No Handoff")
+
+print("\nHandoff Simulation Completed")
